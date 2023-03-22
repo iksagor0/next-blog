@@ -1,5 +1,5 @@
 import dbConnect from "@db/dbConnect";
-import User from "@model/userModel";
+import Admin from "@model/adminModel";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -14,7 +14,7 @@ export default async function handler(
   try {
     if (req.method === "POST") {
       // FIND USER AS REQ EMAIL
-      const findUser = await User.findOne({ email: req.body?.email });
+      const findUser = await Admin.findOne({ email: req.body?.email });
 
       if (findUser) {
         const { name, email, password, status, role } = findUser;

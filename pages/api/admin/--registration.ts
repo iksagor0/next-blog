@@ -1,5 +1,5 @@
 import dbConnect from "@db/dbConnect";
-import User from "@model/userModel";
+import Admin from "@model/adminModel";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -19,7 +19,7 @@ export default async function handler(
       const encryptedPass = await bcrypt.hash(password, 10);
 
       // IF USER EXIST ALREADY
-      const findUser = await User.findOne({ email });
+      const findUser = await Admin.findOne({ email });
       if (findUser) {
         res.status(500).json({
           success: false,
@@ -29,7 +29,7 @@ export default async function handler(
       }
 
       // CREATE NEW USER IN DATABASE
-      const newData = await new User({ name, email, password: encryptedPass });
+      const newData = await new Admin({ name, email, password: encryptedPass });
       newData.save();
 
       // GENERATE JTW TOKEN AND SEND RESPONSE
