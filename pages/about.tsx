@@ -3,7 +3,7 @@ import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export default function About() {
   return (
     <>
       <Head>
@@ -12,9 +12,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <main className={"main"}>
         <div className="container">
-          <div className="">Hi</div>
+          <div className="bg-black text-gray-100">About</div>
         </div>
       </main>
     </>
