@@ -14,16 +14,6 @@ if (!MONGODB_URI) {
   );
 }
 
-/**
- * Global is used here to maintain a cached connection across hot reloads
- * in development. This prevents connections growing exponentially
- * during API Route usage.
- */
-// type cachedType = {
-//   conn: any;
-//   promise: any;
-// };
-
 let cached = global.mongoose;
 
 if (!cached) {
@@ -40,9 +30,6 @@ async function dbConnect() {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       bufferCommands: false,
-      //   bufferMaxEntries: 0,
-      //   useFindAndModify: true,
-      //   useCreateIndex: true,
     };
 
     cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => {

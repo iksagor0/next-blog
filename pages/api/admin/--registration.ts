@@ -8,10 +8,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // Connect with Database
-  await dbConnect();
-
   try {
+    // Connect with Database
+    await dbConnect();
+
     if (req.method === "POST") {
       const { name, email, password } = req.body;
 

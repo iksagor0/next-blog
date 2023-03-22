@@ -23,17 +23,26 @@ const blogSchema = new mongoose.Schema(
     },
 
     category: {
-      type: Array,
-      default: [],
-    },
-
-    approval: {
-      type: Boolean,
-      default: false,
+      type: String,
     },
 
     writter: {
-      type: Object,
+      type: mongoose.Schema.Types.Mixed,
+    },
+
+    approval: {
+      type: String,
+      default: "Pending",
+      enum: ["Pending", "Approved", "Rejected"],
+    },
+
+    adminComment: {
+      type: String,
+    },
+
+    priority: {
+      type: Number,
+      default: 0,
     },
   },
   {
@@ -41,4 +50,4 @@ const blogSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.models.Admin || mongoose.model("Admin", blogSchema);
+export default mongoose.models.blog || mongoose.model("blog", blogSchema);
