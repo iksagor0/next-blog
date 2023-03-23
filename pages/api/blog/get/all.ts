@@ -21,11 +21,13 @@ export default async function handler(
           .status(400)
           .json({ success: false, message: "User not logged in!!" });
       } else if (isUser?.role !== "ADMIN") {
+        //   IF USER NOT = ADMIN
         res.status(500).json({
           success: false,
           message: "Only ADMIN can get all blogs!!",
         });
       } else {
+        //   READING DATA AND SEND AS RESPONSE
         const data = await Blog.find(req.query)
           .sort({ createdAt: -1 })
           .limit(req.body?.limit)
@@ -39,6 +41,7 @@ export default async function handler(
         });
       }
     } else {
+      // FOR WRONG RES METHOD
       res.status(500).json({
         success: false,
         message: "Request Method is wrong!!",

@@ -21,11 +21,13 @@ export default async function handler(
           .status(400)
           .json({ success: false, message: "User not logged in!!" });
       } else if (isUser?.role !== "ADMIN") {
+        // ONLY ADMIN CAN UPDATE BLOG
         res.status(500).json({
           success: false,
           message: "Only ADMIN can APPROVE the blog!!",
         });
       } else {
+        // DECLARE ALL ID FROM BODY._ID
         let ids = req.body?._id ?? [];
         const blogs = await Blog.find({
           _id: {
@@ -33,16 +35,19 @@ export default async function handler(
           },
         });
 
+        // BULK UPDATING BY IDs
         blogs.map(async (blog) => {
           return await Blog.findByIdAndUpdate(blog._id, req.body);
         });
 
+        // SEND RESPONSE
         res.status(200).json({
           success: true,
           message: `Blogs ${req.body?.approval} successfully!`,
         });
       }
     } else {
+      // FOR WRONG RES METHOD
       res.status(500).json({
         success: false,
         message: "Request Method is wrong!!",
