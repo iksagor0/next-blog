@@ -16,6 +16,8 @@ export default async function handler(
       // FIND USER AS REQ EMAIL
       const findUser = await User.findOne({ email: req.body?.email });
 
+      console.log(findUser);
+
       if (findUser) {
         const { name, email, password, status, role } = findUser;
         // COMPARE REQ PASSWORD WITH USER DB PASSOWRD
@@ -27,7 +29,7 @@ export default async function handler(
         if (decryptedPass) {
           // IF ALL OK THEN GENERATE JWT AND SEND RESPONSE
           const token = jwt.sign(
-            { name, email },
+            { name, email, role, status },
             process.env.JWT_TOKEN_PRIVATE_KEY || ""
           );
 

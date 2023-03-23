@@ -27,7 +27,7 @@ export default async function handler(
         if (decryptedPass) {
           // IF ALL OK THEN GENERATE JWT AND SEND RESPONSE
           const token = jwt.sign(
-            { name, email },
+            { name, email, status, role },
             process.env.JWT_TOKEN_PRIVATE_KEY || ""
           );
 
