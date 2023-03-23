@@ -26,8 +26,12 @@ const blogSchema = new mongoose.Schema(
       type: String,
     },
 
-    writter: {
-      type: mongoose.Schema.Types.Mixed,
+    writter_id: {
+      type: String,
+    },
+
+    writter_name: {
+      type: String,
     },
 
     approval: {

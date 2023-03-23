@@ -19,7 +19,7 @@ export default async function handler(
       console.log(findUser);
 
       if (findUser) {
-        const { name, email, password, status, role } = findUser;
+        const { name, email, password, status, role, _id } = findUser;
         // COMPARE REQ PASSWORD WITH USER DB PASSOWRD
         const decryptedPass = await bcrypt.compare(
           req.body?.password,
@@ -29,14 +29,14 @@ export default async function handler(
         if (decryptedPass) {
           // IF ALL OK THEN GENERATE JWT AND SEND RESPONSE
           const token = jwt.sign(
-            { name, email, role, status },
+            { _id, name, email, role, status },
             process.env.JWT_TOKEN_PRIVATE_KEY || ""
           );
 
           res.status(200).json({
             success: true,
             message: "Login Successful!",
-            body: { name, email, role },
+            body: { _id, name, email, role },
             token,
           });
         } else {

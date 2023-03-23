@@ -15,7 +15,6 @@ export default async function handler(
     if (req.method === "POST") {
       // CHECK USER IDENTIFICATION
       const isUser = checkLogin(req.headers?.authorization || "");
-      console.log(isUser);
 
       if (!isUser) {
         //  IF USER NOT FOUND
@@ -27,10 +26,8 @@ export default async function handler(
         const newData = await new Blog({
           ...req.body,
           approval: "Pending",
-          writter: {
-            name: isUser?.name,
-            email: isUser?.email,
-          },
+          writter_id: isUser?._id,
+          writter_name: isUser?.name,
         });
         newData
           .save()

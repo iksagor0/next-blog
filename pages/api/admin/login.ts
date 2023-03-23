@@ -17,7 +17,7 @@ export default async function handler(
       const findUser = await Admin.findOne({ email: req.body?.email });
 
       if (findUser) {
-        const { name, email, password, status, role } = findUser;
+        const { name, email, password, role, _id } = findUser;
         // COMPARE REQ PASSWORD WITH USER DB PASSOWRD
         const decryptedPass = await bcrypt.compare(
           req.body?.password,
@@ -27,14 +27,14 @@ export default async function handler(
         if (decryptedPass) {
           // IF ALL OK THEN GENERATE JWT AND SEND RESPONSE
           const token = jwt.sign(
-            { name, email, status, role },
+            { name, email, role, _id },
             process.env.JWT_TOKEN_PRIVATE_KEY || ""
           );
 
           res.status(200).json({
             success: true,
             message: "Login Successful!",
-            body: { name, email, role },
+            body: { name, email, role, _id },
             token,
           });
         } else {
