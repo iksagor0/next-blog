@@ -6,6 +6,12 @@ const adminSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+
+    photo: {
+      type: String,
+      default: "",
+    },
+
     email: {
       type: String,
       required: true,
