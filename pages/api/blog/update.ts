@@ -9,7 +9,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    if (req.method === "GET") {
+    if (req.method === "PUT") {
       // Connect with Database
       await dbConnect();
 
@@ -23,19 +23,23 @@ export default async function handler(
       } else if (isUser?.role !== "ADMIN") {
         res.status(500).json({
           success: false,
-          message: "Only ADMIN can get all blogs!!",
+          message: "Only ADMIN can APPROVE the blog!!",
         });
       } else {
-        const data = await Blog.find(req.query)
-          .sort({ createdAt: -1 })
-          .limit(req.body?.limit)
-          .skip(req.body?.skip);
+        let ids = req.body?._id ?? [];
+        const blogs = await Blog.find({
+          _id: {
+            $in: ids,
+          },
+        });
 
-        console.log(data.length);
+        blogs.map(async (blog) => {
+          return await Blog.findByIdAndUpdate(blog._id, req.body);
+        });
+
         res.status(200).json({
           success: true,
-          message: "Data fetched successfully!",
-          body: data,
+          message: `Blogs ${req.body?.approval} successfully!`,
         });
       }
     } else {
