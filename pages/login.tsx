@@ -18,6 +18,11 @@ export default function login() {
     //   Post Data
     const data = await axios.post("/api/user/login", form);
     console.log(data);
+    if (data?.data?.success) {
+      alert("Login Successful!");
+    } else {
+      alert(data?.data?.message);
+    }
   };
 
   // Handle input change
