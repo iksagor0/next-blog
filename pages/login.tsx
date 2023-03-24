@@ -1,24 +1,49 @@
+import axios from "axios";
 import Link from "next/link";
+import { useState } from "react";
 import { AiFillLock } from "react-icons/ai";
 import { RxAvatar } from "react-icons/rx";
 
 export default function login() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [form, setForm] = useState({ email: "", password: "" });
+
+  // Submit Login Form
+  const handleLogin = async (e: any) => {
+    e.preventDefault();
+
+    //   Post Data
+    const data = await axios.post("/api/user/login", form);
+    console.log(data);
+  };
+
+  // Handle input change
+  const handleChange = (e: any) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
   return (
     <div
       id="login_page"
       className="grid place-content-center bg-[#2c3338] text-white"
     >
       <div className="container">
-        <form action="#" method="#" className="login-form">
+        <form
+          action="#"
+          method="#"
+          className="login-form"
+          onSubmit={handleLogin}
+        >
           <div className="form__field flex text-gray-500 mb-3 bg-[#3b4148]">
             <label className=" bg-slate-900 p-2 text-xl">
               <RxAvatar />
             </label>
             <input
               type="email"
-              name="username"
+              name="email"
               className="form__input bg-transparent px-2 pr-3"
               placeholder="Email"
+              value={form.email}
+              onChange={handleChange}
               required
             />
           </div>
@@ -32,6 +57,8 @@ export default function login() {
               name="password"
               className="form__input bg-transparent px-2 pr-3"
               placeholder="Password"
+              value={form.password}
+              onChange={handleChange}
               required
             />
           </div>

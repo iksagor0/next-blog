@@ -81,7 +81,7 @@ export default function Header() {
             <Link href={"/create"} className="btn__primary bg_create">
               Create a Blog
             </Link>
-            <Link href={"/login"} className="btn__primary bg_purple">
+            <Link href={"/login"} className="btn__outline ">
               Login
             </Link>
           </div>

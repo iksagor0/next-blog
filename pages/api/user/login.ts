@@ -48,7 +48,7 @@ export default async function handler(
         }
       } else {
         // IF USER NOT FOUND IN DATABASE
-        res.status(400).json({
+        res.status(401).json({
           success: false,
           message: "User Not Found!!",
         });

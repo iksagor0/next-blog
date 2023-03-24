@@ -85,6 +85,24 @@ p {
   background: rgb(146 64 14);
 }
 
+.btn__primary:hover {
+  background: rgb(129, 50, 1);
+}
+
+.btn__outline {
+  min-width: 80px;
+  padding: 2px 20px 5px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  border-radius: 3px;
+  border: 1.8px solid rgb(146 64 14) !important;
+}
+
+.btn__outline:hover {
+  background: rgb(129, 50, 1);
+}
+
 .bg_purple {
   background: purple;
 }
@@ -94,6 +112,11 @@ p {
   border-bottom: 1.7px solid transparent !important;
   padding: 5px 0;
 }
+
+#navbar li a {
+  display: block;
+}
+
 #navbar li:hover {
   border-bottom: 1.7px solid #2c3338 !important;
   color: #fff;
