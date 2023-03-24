@@ -6,7 +6,10 @@ import { RxAvatar } from "react-icons/rx";
 
 export default function login() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({
+    email: "sagor@email.com",
+    password: "password",
+  });
 
   // Submit Login Form
   const handleLogin = async (e: any) => {
