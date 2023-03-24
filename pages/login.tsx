@@ -48,7 +48,7 @@ export default function login() {
             <input
               type="email"
               name="email"
-              className="form__input bg-transparent px-2 pr-3"
+              className="form__input bg-transparent px-2 pr-3 text-gray-100"
               placeholder="Email"
               value={form.email}
               onChange={handleChange}
@@ -63,7 +63,7 @@ export default function login() {
             <input
               type="password"
               name="password"
-              className="form__input bg-transparent px-2 pr-3"
+              className="form__input bg-transparent px-2 pr-3 text-gray-100"
               placeholder="Password"
               value={form.password}
               onChange={handleChange}
