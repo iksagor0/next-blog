@@ -75,19 +75,18 @@ p {
   margin: 0 auto;
 }
 
-.btn-primary {
-  background: purple;
-  display: inline-block;
+.btn__primary {
   min-width: 80px;
   padding: 5px 20px;
   display: grid;
   place-items: center;
   font-weight: 700;
   border-radius: 3px;
+  background: rgb(146 64 14);
 }
 
-.bg_create {
-  background: rgb(146 64 14);
+.bg_purple {
+  background: purple;
 }
 
 /* NAV */
@@ -99,3 +98,18 @@ p {
   border-bottom: 1.7px solid #2c3338 !important;
   color: #fff;
 }
+
+/* Login */
+#login_page {
+  height: calc(100vh - 60px);
+}
+#login_page .form__field {
+  display: grid;
+  grid-template-columns: 35px 300px;
+}
+
+/* .border_btn {
+  border: 1.5px solid purple !important;
+  padding: 2px 10px 6px;
+  border-radius: 5px;
+} */

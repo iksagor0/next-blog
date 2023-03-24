@@ -78,13 +78,10 @@ export default function Header() {
         </nav>
         <div className="flex gap-5">
           <div className="btn_container flex gap-3">
-            <Link
-              href={"/create"}
-              className="btn-primary bg-amber-800 bg_create"
-            >
+            <Link href={"/create"} className="btn__primary bg_create">
               Create a Blog
             </Link>
-            <Link href={"/login"} className="btn-primary">
+            <Link href={"/login"} className="btn__primary bg_purple">
               Login
             </Link>
           </div>
