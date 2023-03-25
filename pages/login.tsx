@@ -48,7 +48,7 @@ export default function login() {
       if (router.query?.page) {
         router.push(router.query.page);
       } else {
-        router.replace("/");
+        router.push("/");
       }
     } else {
       setErrMsg(data?.message);

@@ -1,19 +1,21 @@
 import Router from "next/router";
-// import { useEffect } from "react";
+// import { useEffect, useState } from "react";
 
 export default function protectRoute(page: string = "/") {
+  // const [token, setToken] = useState("");
   // useEffect(() => {
-  //   let token = localStorage.getItem("token");
+  //   let getToken = localStorage.getItem("token") ?? "";
+  //   setToken(getToken);
   // }, []);
 
   if (typeof window !== "undefined") {
-    let token = localStorage.getItem("token");
+    let token = localStorage.getItem("token") ?? "";
 
-    if (!token) {
-      Router.push(`/login?auth=false&page=${page}`);
-      return false;
-    } else {
+    if (token) {
       return true;
+    } else {
+      Router.push(`/login`);
+      return false;
     }
   }
 }

@@ -7,7 +7,7 @@ export default function auth() {
   // }, []);
 
   if (typeof window !== "undefined") {
-    let token = localStorage.getItem("token");
+    let token: string | null = localStorage.getItem("token");
 
     return token ? true : false;
   }
