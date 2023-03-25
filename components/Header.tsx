@@ -1,15 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { BsCaretDown } from "react-icons/bs";
 import { FaHamburger } from "react-icons/fa";
+import auth from "./Auth/auth";
 
 export default function Header() {
-  const [showCategory, setShowCategory] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
+  const [isLogin, setIsLogin] = useState();
+  const [profileName, setProfileName] = useState<string>("");
+  const [showCategory, setShowCategory] = useState<boolean>(false);
+  const [showMenu, setShowMenu] = useState<boolean>(false);
+
   const showSubMenu = () => setShowCategory(true);
   const hideSubMenu = () => setShowCategory(false);
+
+  useEffect(() => {
+    setIsLogin(auth);
+
+    const getName: string = localStorage.getItem("name") ?? "Profile";
+    setProfileName(getName);
+  });
 
   return (
     <header
@@ -81,12 +92,19 @@ export default function Header() {
         </nav>
         <div className="flex gap-5">
           <div className="btn_container flex gap-3">
-            <Link href={"/create"} className="btn__primary bg_create">
+            <Link href={"/create"} className="btn__primary">
               Create a Blog
             </Link>
-            <Link href={"/login"} className="btn__outline ">
-              Login
-            </Link>
+
+            {isLogin ? (
+              <Link href={"/profile"} className="btn__primary">
+                {profileName}
+              </Link>
+            ) : (
+              <Link href={"/login"} className="btn__primary">
+                Login
+              </Link>
+            )}
           </div>
 
           <div

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import Auth from "@/components/Auth/Auth";
+import Auth from "@/components/Auth/protectRoute";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -32,7 +32,7 @@ export default function login() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Submit Login Form
+  // SUBMIT FORM
   const handleLogin = async (e: any) => {
     e.preventDefault();
 
@@ -41,12 +41,14 @@ export default function login() {
 
     if (data?.success) {
       localStorage.setItem("token", data?.token);
+      localStorage.setItem("name", data?.body.name);
+      localStorage.setItem("_id", data?.body._id);
       // setErrMsg(data?.message);
 
       if (router.query?.page) {
-        router.push(router.query?.page);
+        router.push(router.query.page);
       } else {
-        router.push("/");
+        router.replace("/");
       }
     } else {
       setErrMsg(data?.message);

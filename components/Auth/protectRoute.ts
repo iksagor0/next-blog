@@ -1,7 +1,7 @@
 import Router from "next/router";
 // import { useEffect } from "react";
 
-export default function auth() {
+export default function protectRoute(page: string = "/") {
   // useEffect(() => {
   //   let token = localStorage.getItem("token");
   // }, []);
@@ -9,6 +9,11 @@ export default function auth() {
   if (typeof window !== "undefined") {
     let token = localStorage.getItem("token");
 
-    return token ? true : false;
+    if (!token) {
+      Router.push(`/login?auth=false&page=${page}`);
+      return false;
+    } else {
+      return true;
+    }
   }
 }

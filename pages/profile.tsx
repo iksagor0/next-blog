@@ -4,9 +4,9 @@ import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function About() {
+export default function Profile() {
   // CHECK AUTHENTICATION
-  const isLogin = protectRoute("/about");
+  const isLogin = protectRoute("/login");
 
   return (
     <>
@@ -19,7 +19,7 @@ export default function About() {
 
       <main className={"main"}>
         <div className="container">
-          <div className="bg-black text-gray-100">About</div>
+          <div className="bg-black text-gray-100">Profile</div>
         </div>
       </main>
     </>
