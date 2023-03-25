@@ -39,27 +39,27 @@ export default async function handler(
           });
         } else {
           // IF PASSWORD NOT MATCHED
-          res.status(400).json({
+          res.status(200).json({
             success: false,
             message: "Password doesn't match!!",
           });
         }
       } else {
         // IF USER NOT FOUND IN DATABASE
-        res.status(400).json({
+        res.status(200).json({
           success: false,
           message: "User Not Found!!",
         });
       }
     } else {
-      res.status(500).json({
+      res.status(200).json({
         success: false,
         message: "Request Method is wrong!!",
       });
     }
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    res.status(200).json({
       success: false,
       message: "There is a server-side error!!",
     });

@@ -1,6 +1,7 @@
 import protectRoute from "@/components/Auth/protectRoute";
 import { Inter } from "next/font/google";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -8,6 +9,12 @@ export default function Profile() {
   // CHECK AUTHENTICATION
   const isLogin = protectRoute("/login");
 
+  const router = useRouter();
+
+  const logout = () => {
+    localStorage.clear();
+    router.push("/");
+  };
   return (
     <>
       <Head>
@@ -20,6 +27,9 @@ export default function Profile() {
       <main className={"main"}>
         <div className="container">
           <div className="bg-black text-gray-100">Profile</div>
+          <button className="btn__primary" onClick={logout}>
+            Logout
+          </button>
         </div>
       </main>
     </>

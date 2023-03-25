@@ -111,6 +111,16 @@ p {
 }
 
 /* NAV */
+/* #navbar::before {
+  content: "";
+  width: 400px;
+  height: 100vh;
+  background: rgba(41, 41, 41, 0.415);
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateX(-1000px);
+} */
 #navbar li {
   border-bottom: 1.7px solid transparent !important;
   padding: 5px 0;
