@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+import Auth from "@/components/Auth/Auth";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -12,10 +13,15 @@ type formObject = {
 };
 
 export default function login() {
-  const [errMsg, setErrMsg] = useState("");
-  const router: NextRouter = useRouter();
-  console.log(router.query);
+  const router = useRouter();
+  // CHECK AUTHENTICATION
+  const isLogin = Auth();
+  if (isLogin) {
+    router.push("/");
+  }
 
+  // STATE
+  const [errMsg, setErrMsg] = useState("");
   const [form, setForm] = useState<formObject>({
     email: "sagor@email.com",
     password: "password",
@@ -30,12 +36,13 @@ export default function login() {
   const handleLogin = async (e: any) => {
     e.preventDefault();
 
-    //   Post Data
     const { data } = await axios.post("/api/user/login", form);
     console.log(data);
 
     if (data?.success) {
-      //
+      localStorage.setItem("token", data?.token);
+      // setErrMsg(data?.message);
+
       if (router.query?.page) {
         router.push(router.query?.page);
       } else {
@@ -58,11 +65,11 @@ export default function login() {
       className="grid place-content-center bg-[#2c3338] text-white"
     >
       <div className="container">
-        {errMsg && (
-          <h2 className="text-center my-5 text-xl text-red-400 font-bold animated__text_none">
-            {errMsg}
-          </h2>
-        )}
+        <h2
+          className={`text-center my-5 text-xl text-red-400 font-bold animated__text_none `}
+        >
+          {errMsg}
+        </h2>
 
         <form
           action="#"
