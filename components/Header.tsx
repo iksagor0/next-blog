@@ -12,8 +12,11 @@ export default function Header() {
   const hideSubMenu = () => setShowCategory(false);
 
   return (
-    <header id="header" className="bg-slate-900 text-gray-300 py-2">
-      <div className="container flex items-center justify-between md:justify-start gap-10">
+    <header
+      id="header"
+      className="bg-slate-900 text-gray-300 py-2 fixed top-0 left-0"
+    >
+      <div className="container flex items-center justify-between lg:justify-start gap-10">
         <div className="logo_area">
           <Link href="/">
             <Image src="/logo.png" alt="logo" width={80} height={53} />
@@ -22,10 +25,10 @@ export default function Header() {
 
         <nav
           id="navbar"
-          className="nav_btn_container md:flex md:ml-auto fixed top-0 right-0 md:static duration-300"
+          className="nav_btn_container lg:flex lg:ml-auto fixed top-0 right-0 lg:static duration-300"
           style={{ right: showMenu ? 0 : -260 }}
         >
-          <ul className="nav_item_wrapper md:flex md:gap-6 text-lg bg-neutral-900 md:bg-slate-900 h-[100vh] md:h-auto w-[200px] md:w-auto px-12 md:px-0 pt-14 md:p-0 z-40">
+          <ul className="nav_item_wrapper lg:flex lg:gap-6 text-lg bg-neutral-900 lg:bg-slate-900 h-[100vh] lg:h-auto w-[200px] lg:w-auto px-12 lg:px-0 pt-14 lg:p-0 z-40">
             <li>
               <Link href="/">Home</Link>
             </li>
@@ -42,7 +45,7 @@ export default function Header() {
               </span>
 
               <ul
-                className="sub-menu min-w-[130px] absolute top-10 -left-4 bg-neutral-800 md:bg-slate-900 px-4 pb-2 text-gray-400 text-sm"
+                className="sub-menu min-w-[130px] absolute top-10 -left-4 bg-neutral-800 lg:bg-slate-900 px-4 pb-2 text-gray-400 text-sm"
                 style={{
                   height: showCategory ? "auto" : 0,
                   visibility: showCategory ? "visible" : "hidden",
@@ -87,7 +90,7 @@ export default function Header() {
           </div>
 
           <div
-            className="hamburger-close md:hidden z-50 text-2xl"
+            className="hamburger-close lg:hidden z-50 text-2xl"
             onClick={() => setShowMenu(!showMenu)}
           >
             {showMenu ? <AiOutlineCloseCircle /> : <FaHamburger />}

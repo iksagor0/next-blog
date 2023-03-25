@@ -1,9 +1,16 @@
 import { Inter } from "next/font/google";
 import Head from "next/head";
+import Router from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function About() {
+  const isAuth: boolean = false;
+
+  if (!isAuth) {
+    Router.push("/login?auth=false&page=/about");
+  }
+
   return (
     <>
       <Head>

@@ -24,7 +24,8 @@ body {
 
 main {
   /* background: #2c3338; */
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh);
+  padding-top: 40px;
 }
 
 section,
@@ -124,11 +125,11 @@ p {
 
 /* Login */
 #login_page {
-  height: calc(100vh - 60px);
+  height: calc(100vh);
 }
 #login_page .form__field {
   display: grid;
-  grid-template-columns: 35px 300px;
+  grid-template-columns: 35px 250px;
 }
 
 /* .border_btn {
@@ -136,3 +137,17 @@ p {
   padding: 2px 10px 6px;
   border-radius: 5px;
 } */
+
+@keyframes scale2 {
+  0% {
+    transform: scale(20);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animated__text {
+  animation: scale2 0.5s linear;
+}
