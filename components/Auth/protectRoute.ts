@@ -14,7 +14,7 @@ export default function protectRoute(page: string = "/") {
     if (token) {
       return true;
     } else {
-      Router.push(`/login`);
+      Router.push(`/user/login`);
       return false;
     }
   }

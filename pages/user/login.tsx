@@ -45,11 +45,12 @@ export default function login() {
       localStorage.setItem("_id", data?.body._id);
       // setErrMsg(data?.message);
 
-      if (router.query?.page) {
-        router.push(router.query.page);
-      } else {
-        router.push("/");
-      }
+      // if (router.query?.page) {
+      //   router.push(router.query.page);
+      // } else {
+      //   router.push("/");
+      // }
+      router.push("/");
     } else {
       setErrMsg(data?.message);
     }
@@ -120,7 +121,7 @@ export default function login() {
         <p className="text-center text-xs mt-5 text-gray-400">
           Not a member?{" "}
           <Link
-            href="/signup"
+            href="/user/signup"
             className="border_btn text-base ml-2 text-white "
           >
             Sign up

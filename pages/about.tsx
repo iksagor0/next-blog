@@ -1,4 +1,3 @@
-import protectRoute from "@/components/Auth/protectRoute";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 
@@ -6,7 +5,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function About() {
   // CHECK AUTHENTICATION
-  const isLogin = protectRoute("/about");
+  // const isLogin = protectRoute("/about");
 
   return (
     <>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { BsCaretDown } from "react-icons/bs";
 import { FaHamburger } from "react-icons/fa";
+import { RxAvatar } from "react-icons/rx";
 import auth from "./Auth/auth";
 
 export default function Header() {
@@ -16,11 +17,11 @@ export default function Header() {
   const hideSubMenu = () => setShowCategory(false);
 
   useEffect(() => {
-    setIsLogin(auth);
+    setIsLogin(auth());
 
     const getName: string = localStorage.getItem("name") ?? "Profile";
     setProfileName(getName);
-  }, []);
+  });
 
   return (
     <header
@@ -97,11 +98,11 @@ export default function Header() {
             </Link>
 
             {isLogin ? (
-              <Link href={"/profile"} className="btn__primary">
-                {profileName}
+              <Link href={"/profile"} className="btn__primary btn__profile">
+                <RxAvatar /> {profileName}
               </Link>
             ) : (
-              <Link href={"/login"} className="btn__primary">
+              <Link href={"/user/login"} className="btn__primary">
                 Login
               </Link>
             )}

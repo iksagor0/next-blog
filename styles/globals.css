@@ -61,6 +61,7 @@ textarea,
 textarea:focus {
   outline: 0;
   outline-offset: 0;
+  background: transparent;
 }
 
 p {
@@ -103,8 +104,10 @@ p {
   background: rgb(129, 50, 1);
 }
 
-.bg_purple {
-  background: purple;
+.btn__profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 /* NAV */
@@ -123,10 +126,12 @@ p {
 }
 
 /* Login */
-#login_page {
+#login_page,
+#signup_page {
   height: calc(100vh);
 }
-#login_page .form__field {
+#login_page .form__field,
+#signup_page .form__field {
   display: grid;
   grid-template-columns: 35px 250px;
 }
