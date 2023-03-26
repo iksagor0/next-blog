@@ -165,3 +165,24 @@ p {
 .animated__text {
   animation: scale2 0.5s linear;
 }
+
+/* TABLE */
+table,
+th,
+td {
+  border: 1px solid black !important;
+}
+
+th,
+td {
+  padding: 5px;
+}
+
+button:disabled {
+  /* background: #000000;
+  color: #fff; */
+  color: #000;
+  opacity: 0.6;
+  /* text-decoration: line-through 2px solid #fff !important; */
+}
+/*  */
