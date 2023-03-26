@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 export default function dashboard() {
   const [blogs, setBlogs] = useState([]);
-  const [render, setRender] = useState<boolean>(false);
 
   const fetchData = async (limit: number = 10) => {
     //   Can I end Body in get method?
