@@ -55,12 +55,17 @@ export default function Create() {
 
     console.log(data);
 
-    // if (data?.success) {
-    //   alert("Post created successfully. Please wait for admin Aprroval!");
-    //   router.push("/profile");
-    // } else {
-    //   setErrMsg(data?.message);
-    // }
+    if (data?.success) {
+      alert("Blog posted successfully. Please wait for admin Aprroval!");
+      setForm({
+        title: "",
+        category: "",
+        shortDes: "",
+        description: "",
+      });
+    } else {
+      alert(data?.message);
+    }
   };
 
   useEffect(() => {
@@ -152,7 +157,7 @@ export default function Create() {
             </label> */}
             <textarea
               name="shortDes"
-              className="w-full h-[50px] bg-transparent px-2 text-gray-100"
+              className="w-full h-[100px] bg-transparent px-2 text-gray-100"
               placeholder="Write a short description about the blog"
               value={form.shortDes}
               onChange={handleChange}
@@ -173,8 +178,6 @@ export default function Create() {
             />
           </div>
         </form>
-
-        <p>{form.description}</p>
       </div>
     </section>
   );

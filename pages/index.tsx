@@ -3,6 +3,7 @@ import { GetServerSideProps } from "next";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -25,7 +26,11 @@ export default function Home({ blogData }: any) {
             <h1 className="text-5xl font-bold my-5">Blogs</h1>
 
             {blogs.map((blog) => (
-              <div className="blog mb-5 flex gap-5" key={blog?._id}>
+              <Link
+                href={`/blog/${blog._id}`}
+                className="blog mb-5 flex gap-5"
+                key={blog?._id}
+              >
                 <Image
                   src={"/blog.jpeg"}
                   alt="blog_image"
@@ -37,9 +42,9 @@ export default function Home({ blogData }: any) {
                   <h3 className="blog_title font-bold text-3xl ">
                     {blog?.title}
                   </h3>
-                  <h3 className="blog_title text-lg">{blog?.shortDes}</h3>
+                  <p className="blog_title text-lg">{blog?.shortDes}</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </section>
         </div>

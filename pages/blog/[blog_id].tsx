@@ -10,11 +10,16 @@ export default function Blog({ blog }) {
 
   return (
     <section id="blog">
-      <div className="container">
-        <img src={"/blog.jpeg"} alt="blog_image" className="img my-3" />
+      <div className="container pt-10">
+        {/* <img src={"/blog.jpeg"} alt="blog_image" className="img my-3" /> */}
 
-        <h1 className="text-3xl text-center my-3 font-bold">{blog?.title}</h1>
-        <p className="text-xl">{blog?.description}</p>
+        <h1 className="text-5xl text-center my-3 mb-8 font-bold leading-[60px]">
+          {blog?.title}
+        </h1>
+        <article
+          className="text-lg"
+          dangerouslySetInnerHTML={{ __html: blog?.description }}
+        ></article>
       </div>
     </section>
   );

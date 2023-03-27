@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import protectDashboard from "~/Auth/protectDashboard";
+
 export default function dashboard() {
   const [blogs, setBlogs] = useState([]);
   const [currBlog, setCurrBlog] = useState({});
