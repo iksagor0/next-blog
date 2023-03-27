@@ -21,7 +21,7 @@ export default async function handler(
       // IF USER EXIST ALREADY
       const findUser = await User.findOne({ email });
       if (findUser) {
-        res.status(500).json({
+        res.json({
           success: false,
           message: "Already exist a user on this email!!",
         });
@@ -45,14 +45,14 @@ export default async function handler(
         token,
       });
     } else {
-      res.status(500).json({
+      res.json({
         success: false,
         message: "Request Method is wrong!!",
       });
     }
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    res.json({
       success: false,
       message: "There is a server-side error!!",
     });

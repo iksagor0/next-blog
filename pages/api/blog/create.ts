@@ -18,9 +18,7 @@ export default async function handler(
 
       if (!isUser) {
         //  IF USER NOT FOUND
-        res
-          .status(400)
-          .json({ success: false, message: "User not logged in!!" });
+        res.json({ success: false, message: "User not logged in!!" });
       } else {
         // CREATE NEW USER IN DATABASE
         const newData = await new Blog({
@@ -48,14 +46,14 @@ export default async function handler(
           });
       }
     } else {
-      res.status(500).json({
+      res.json({
         success: false,
         message: "Request Method is wrong!!",
       });
     }
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    res.json({
       success: false,
       message: "There is a server-side error!!",
     });

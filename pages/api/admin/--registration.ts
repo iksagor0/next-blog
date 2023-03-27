@@ -45,14 +45,14 @@ export default async function handler(
         token,
       });
     } else {
-      res.status(500).json({
+      res.json({
         success: false,
         message: "Request Method is wrong!!",
       });
     }
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    res.json({
       success: false,
       message: "There is a server-side error!!",
     });

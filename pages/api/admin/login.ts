@@ -31,7 +31,7 @@ export default async function handler(
             process.env.JWT_TOKEN_PRIVATE_KEY || ""
           );
 
-          res.status(200).json({
+          res.json({
             success: true,
             message: "Login Successful!",
             body: { name, email, role, _id },
@@ -39,27 +39,27 @@ export default async function handler(
           });
         } else {
           // IF PASSWORD NOT MATCHED
-          res.status(200).json({
+          res.json({
             success: false,
             message: "Password doesn't match!!",
           });
         }
       } else {
         // IF USER NOT FOUND IN DATABASE
-        res.status(200).json({
+        res.json({
           success: false,
           message: "User Not Found!!",
         });
       }
     } else {
-      res.status(200).json({
+      res.json({
         success: false,
         message: "Request Method is wrong!!",
       });
     }
   } catch (error) {
     console.log(error);
-    res.status(200).json({
+    res.json({
       success: false,
       message: "There is a server-side error!!",
     });

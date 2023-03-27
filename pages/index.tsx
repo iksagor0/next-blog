@@ -1,24 +1,15 @@
 import axios from "axios";
+import { GetServerSideProps } from "next";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
-  const [blogs, setBlogs] = useState([]);
+export default function Home({ blogData }: any) {
+  const [blogs, setBlogs] = useState(blogData ?? []);
 
-  const fetchData = async (limit: number = 10) => {
-    //   Can I end Body in get method?
-    const { data } = await axios.get("/api/blog/get/everyone");
-    console.log(data.body);
-    setBlogs(data.body);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
   return (
     <>
       <Head>
@@ -33,7 +24,7 @@ export default function Home() {
           <section className="blog_table_container">
             <h1 className="text-5xl font-bold my-5">Blogs</h1>
 
-            {blogs.map((blog, index) => (
+            {blogs.map((blog) => (
               <div className="blog mb-5 flex gap-5" key={blog?._id}>
                 <Image
                   src={"/blog.jpeg"}
@@ -56,3 +47,12 @@ export default function Home() {
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { data } = await axios.get(
+    "http://localhost:3000/api/blog/get/everyone"
+  );
+  const blogData = data.body;
+
+  return { props: { blogData } };
+};

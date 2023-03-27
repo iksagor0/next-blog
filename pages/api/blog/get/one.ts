@@ -12,21 +12,25 @@ export default async function handler(
       // Connect with Database
       await dbConnect();
 
-      //   READING DATA
-      const data = await Blog.find({ approval: "Approved", ...req.query })
-        .sort({
-          priority: -1,
-          createdAt: -1,
-        })
-        .limit(req.body?.limit)
-        .skip(req.body?.skip);
+      const blog_id = req.query;
 
-      // SEND AS RESPONSE
-      res.status(200).json({
-        success: true,
-        message: "Data fetched successfully!",
-        body: data,
-      });
+      //   READING DATA
+      const data = await Blog.findOne(req.query);
+
+      if (data?.approval !== "Approved") {
+        res.json({
+          success: false,
+          message: "Blog is not Approved by admin!",
+        });
+      } else {
+        // SEND AS RESPONSE
+        res.json({
+          success: true,
+          message: "Data fetched successfully!",
+          body: data,
+          writter: "Annonymas",
+        });
+      }
     } else {
       // FOR WRONG RES METHOD
       res.json({
