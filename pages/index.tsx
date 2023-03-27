@@ -52,7 +52,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { data } = await axios.get(
     "http://localhost:3000/api/blog/get/everyone"
   );
-  const blogData = data.body;
 
-  return { props: { blogData } };
+  return { props: { blogData: data?.body } };
 };
