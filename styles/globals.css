@@ -24,7 +24,7 @@ body {
 main {
   /* background: #2c3338; */
   min-height: calc(100vh);
-  padding-top: 70px;
+  padding-top: 40px;
 }
 
 section,
@@ -143,8 +143,10 @@ p {
 
 /* Login */
 #login_page,
-#signup_page {
-  height: calc(100vh);
+#signup_page,
+#create_blog_page {
+  min-height: calc(100vh);
+  padding-top: 30px;
 }
 #login_page .form__field,
 #signup_page .form__field {
@@ -192,3 +194,14 @@ button:disabled {
   /* text-decoration: line-through 2px solid #fff !important; */
 }
 /*  */
+
+/* Rich Text */
+.jodit-react-container {
+  width: 100%;
+}
+.jodit-status-bar__item-right .jodit-status-bar-link {
+  display: none;
+}
+.jodit-wysiwyg {
+  height: 180px !important;
+}

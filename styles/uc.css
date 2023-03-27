@@ -1,0 +1,36 @@
+ul {
+  list-style: none;
+}
+ul li {
+  margin-bottom: 20px;
+}
+
+.modal-header h5 {
+  padding: 10px;
+  color: #fff;
+}
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+  position: static;
+}
+
+#btnBAMSubmit {
+  display: none;
+}
+
+#submittoissue,
+h3 {
+  margin: 0 !important;
+}
+
+.payment-box .container {
+  margin-top: 20px;
+}
+
+.container .row.justify-content-center {
+  text-align: center;
+}
+.container .row.justify-content-center .col-12 h1 {
+  font-weight: bold;
+}

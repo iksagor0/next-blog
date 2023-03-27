@@ -81,6 +81,9 @@ export default function Header() {
                 <li>
                   <a href="">Science & Tech</a>
                 </li>
+                <li>
+                  <a href="">Others</a>
+                </li>
               </ul>
             </li>
             <li>
@@ -93,7 +96,7 @@ export default function Header() {
         </nav>
         <div className="flex gap-5">
           <div className="btn_container flex gap-3">
-            <Link href={"/create"} className="btn__primary">
+            <Link href={"/blog/create"} className="btn__primary">
               Create a Blog
             </Link>
 
