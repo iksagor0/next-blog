@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import protectDashboard from "~/Auth/protectDashboard";
 export default function dashboard() {
   const [blogs, setBlogs] = useState([]);
+  const [currBlog, setCurrBlog] = useState({});
 
   const fetchData = async (limit: number = 10) => {
+    const auth = protectDashboard();
+
     //   Can I end Body in get method?
     const { data } = await axios.get("/api/blog/get/all", {
       headers: {
@@ -33,6 +36,16 @@ export default function dashboard() {
     fetchData();
   };
 
+  const deleteBlog = async (_id: string) => {
+    const { data } = await axios.delete(`/api/blog/delete?_id=${_id}`, {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    });
+
+    fetchData();
+  };
+
   return (
     <section className="mt-10">
       <div className="container">
@@ -40,52 +53,67 @@ export default function dashboard() {
 
         {/* ================== */}
         <div className="blog_table_container">
-          <table className="w-full" border={"#000"}>
+          <table className="w-full">
             <thead>
               <tr>
                 <th className="index_head">No.</th>
                 <th className="title_head">Title</th>
                 <th className="category_head">Category</th>
                 <th className="approval_head">Approval Status</th>
+                <th className="priority_head">Priority</th>
                 <th className="CTA_Buttons w-[350px]">Control Buttons</th>
               </tr>
             </thead>
             <tbody>
-              {blogs.map((blog, index) => (
-                <tr className="" key={blog?._id ?? index}>
-                  <td className="index text-center">{index + 1}</td>
-                  <td className="title ">{blog?.title}</td>
-                  <td className="category text-center">{blog?.category}</td>
-                  <td className="approval text-center">
-                    <div>{blog?.approval}</div>
-                  </td>
+              {blogs &&
+                blogs.map((blog, index) => (
+                  <tr className="" key={blog?._id ?? index}>
+                    <td className="index text-center">{index + 1}</td>
+                    <td className="title ">{blog?.title}</td>
+                    <td className="category text-center">{blog?.category}</td>
+                    <td className="approval text-center">
+                      <div>{blog?.approval}</div>
+                    </td>
+                    <td
+                      className="priority text-center"
+                      onClick={() =>
+                        blog._id === currBlog._id ? setCurrBlog(blog) : ""
+                      }
+                    >
+                      {blog?.priority}
+                    </td>
 
-                  <td className="approval_btn_container  grid grid-cols-4">
-                    <button
-                      className="bg-green-700"
-                      disabled={blog.approval === "Approved"}
-                      onClick={() => approvalBlog(blog._id, "Approved")}
-                    >
-                      Approve
-                    </button>
-                    <button
-                      className="bg-yellow-600"
-                      disabled={blog.approval === "Pending"}
-                      onClick={() => approvalBlog(blog._id, "Pending")}
-                    >
-                      Hide
-                    </button>
-                    <button
-                      className="bg-red-700 text-gray-200"
-                      disabled={blog.approval === "Rejected"}
-                      onClick={() => approvalBlog(blog._id, "Rejected")}
-                    >
-                      Reject
-                    </button>
-                    <button className="bg-red-800 text-gray-200">Delete</button>
-                  </td>
-                </tr>
-              ))}
+                    <td className="approval_btn_container  grid grid-cols-4">
+                      <button
+                        className="bg-green-700"
+                        disabled={blog.approval === "Approved"}
+                        onClick={() => approvalBlog(blog._id, "Approved")}
+                      >
+                        Approve
+                      </button>
+                      <button
+                        className="bg-yellow-600"
+                        disabled={blog.approval === "Pending"}
+                        onClick={() => approvalBlog(blog._id, "Pending")}
+                      >
+                        Hide
+                      </button>
+                      <button
+                        className="bg-red-700 text-gray-200"
+                        disabled={blog.approval === "Rejected"}
+                        onClick={() => approvalBlog(blog._id, "Rejected")}
+                      >
+                        Reject
+                      </button>
+                      <button
+                        className="bg-red-800 text-gray-200"
+                        onClick={() => deleteBlog(blog._id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
