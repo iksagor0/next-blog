@@ -21,7 +21,7 @@ export default function Header() {
 
     const getName: string = localStorage.getItem("name") ?? "Profile";
     setProfileName(getName);
-  }, []);
+  });
 
   return (
     <header
