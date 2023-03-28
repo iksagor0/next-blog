@@ -11,7 +11,7 @@ type formObject = {
   password: string;
 };
 
-export default function login() {
+export default function Login() {
   const router = useRouter();
   // CHECK AUTHENTICATION
   const isLogin = Auth();
