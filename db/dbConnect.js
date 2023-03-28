@@ -6,7 +6,7 @@ https://itnext.io/using-mongoose-with-next-js-11-b2a08ff2dd3c
 https://github.com/vercel/next.js/blob/canary/examples/with-mongodb-mongoose/utils/dbConnect.js 
 **/
 
-const MONGODB_URI: string = process.env.MONGODB_DATABASE_URI || "";
+const MONGODB_URI = process.env.MONGODB_DATABASE_URI || "";
 
 if (!MONGODB_URI) {
   throw new Error(
