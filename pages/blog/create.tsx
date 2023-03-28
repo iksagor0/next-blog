@@ -72,7 +72,7 @@ export default function Create() {
     if (router.query?.auth) {
       setErrMsg("Please login first !");
     }
-  }, []);
+  }, [router.query?.auth]);
 
   return (
     <section id="create_blog_page" className="bg-[#2c3338] text-white">

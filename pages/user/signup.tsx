@@ -13,7 +13,7 @@ type formObject = {
   password: string;
 };
 
-export default function signup() {
+export default function Signup() {
   const router = useRouter();
   // CHECK AUTHENTICATION
   const isLogin = Auth();

@@ -12,7 +12,7 @@ type formObject = {
   password: string;
 };
 
-export default function login() {
+export default function Login() {
   const router = useRouter();
   // CHECK AUTHENTICATION
   const isLogin = Auth();
@@ -60,7 +60,7 @@ export default function login() {
     if (router.query?.auth) {
       setErrMsg("Please login first !");
     }
-  }, []);
+  }, [router.query?.auth]);
 
   return (
     <div

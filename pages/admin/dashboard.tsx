@@ -2,9 +2,17 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import protectDashboard from "~/Auth/protectDashboard";
 
-export default function dashboard() {
+interface blog {
+  _id: string;
+  title: string;
+  category: string;
+  approval: string;
+  priority: string;
+}
+
+export default function Dashboard() {
   const [blogs, setBlogs] = useState([]);
-  const [currBlog, setCurrBlog] = useState({});
+  const [currBlog, setCurrBlog] = useState<blog>(blogs[0]);
 
   const fetchData = async (limit: number = 10) => {
     const auth = protectDashboard();
@@ -67,7 +75,7 @@ export default function dashboard() {
             </thead>
             <tbody>
               {blogs &&
-                blogs.map((blog, index) => (
+                blogs.map((blog: blog, index: number) => (
                   <tr className="" key={blog?._id ?? index}>
                     <td className="index text-center">{index + 1}</td>
                     <td className="title ">{blog?.title}</td>
