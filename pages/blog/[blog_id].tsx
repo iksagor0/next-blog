@@ -3,7 +3,7 @@ import axios from "axios";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 
-export default function Blog({ blog }) {
+export default function Blog({ blog }: any) {
   const router = useRouter();
   console.log(router.query?.blog_id);
   console.log(blog);
