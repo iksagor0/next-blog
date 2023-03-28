@@ -2,25 +2,21 @@ import dbConnect from "@/db/dbConnect";
 import Blog from "@/model/blogModel";
 
 import checkLogin from "@/middleware/checkLogin";
-import { NextApiRequest, NextApiResponse } from "next";
 
-interface userDataJWT {
-  _id: string | null;
-  name: string | null;
-  email: string | null;
-}
+// interface userDataJWT {
+//   _id: string | null;
+//   name: string | null;
+//   email: string | null;
+// }
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handler(req, res) {
   try {
     // Connect with Database
     await dbConnect();
 
     if (req.method === "POST") {
       // CHECK USER IDENTIFICATION
-      const isUser: userDataJWT = checkLogin(req.headers?.authorization ?? "");
+      const isUser = checkLogin(req.headers?.authorization ?? "");
 
       if (!isUser) {
         //  IF USER NOT FOUND
@@ -35,33 +31,26 @@ export default async function handler(
         });
         newData
           .save()
-          .then((data: object) => {
+          .then((data) => {
             res.status(200).json({
               success: true,
               message: "Blog posted successfully!",
               body: data,
             });
           })
-          .catch(function (error: any) {
+          .catch(function (error) {
             // IF ERROR FROM MONGODB
-            res.status(200).json({
-              success: false,
-              message: "Failed to post blog!!!",
-              body: error.message,
-            });
+            throw new Error(error.message ?? "Failed to post blog!!!");
           });
       }
     } else {
-      res.json({
-        success: false,
-        message: "Request Method is wrong!!",
-      });
+      throw new Error("Request Method is wrong!!");
     }
   } catch (error) {
     console.log(error);
     res.json({
       success: false,
-      message: "There is a server-side error!!",
+      message: error?.message,
     });
   }
 }

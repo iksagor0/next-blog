@@ -20,6 +20,6 @@
       "~/*": ["./components/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_app.tsx", "components/RichText.jsx", "db/dbConnect.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_app.tsx", "components/RichText.jsx", "db/dbConnect.js", "pages/api/blog/create.js"],
   "exclude": ["node_modules"]
 }
