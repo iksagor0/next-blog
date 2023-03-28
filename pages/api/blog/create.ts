@@ -4,6 +4,12 @@ import Blog from "@/model/blogModel";
 import checkLogin from "@/middleware/checkLogin";
 import { NextApiRequest, NextApiResponse } from "next";
 
+interface userDataJWT {
+  _id: string | null;
+  name: string | null;
+  email: string | null;
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -14,7 +20,7 @@ export default async function handler(
 
     if (req.method === "POST") {
       // CHECK USER IDENTIFICATION
-      const isUser = checkLogin(req.headers?.authorization || "");
+      const isUser: userDataJWT = checkLogin(req.headers?.authorization ?? "");
 
       if (!isUser) {
         //  IF USER NOT FOUND
