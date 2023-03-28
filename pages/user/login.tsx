@@ -45,12 +45,13 @@ export default function Login() {
       localStorage.setItem("_id", data?.body._id);
       // setErrMsg(data?.message);
 
+      router.push("/");
+
       // if (router.query?.page) {
       //   router.push(router.query.page);
       // } else {
       //   router.push("/");
       // }
-      router.push("/");
     } else {
       setErrMsg(data?.message);
     }
