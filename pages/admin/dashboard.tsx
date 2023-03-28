@@ -23,7 +23,7 @@ export default function Dashboard() {
         Authorization: localStorage.getItem("token"),
       },
     });
-    
+
     // console.log(data.body);
     setBlogs(data.body);
   };
