@@ -20,6 +20,6 @@
       "~/*": ["./components/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_app.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_app.tsx", "components/RichText.jsx"],
   "exclude": ["node_modules"]
 }

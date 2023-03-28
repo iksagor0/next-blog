@@ -2,17 +2,17 @@ import JoditEditor from "jodit-react";
 import { useRef } from "react";
 // const Jodit = dynamic(() => import("./Jodit"), { ssr: false });
 
-interface formObject {
-  title: string;
-  shortDes: string;
-  description: string;
-  category: string;
-}
+// interface formObject {
+//   title: string;
+//   shortDes: string;
+//   description: string;
+//   category: string;
+// }
 
-type formAndFunc = {
-  form: formObject;
-  setForm: any;
-};
+// type formAndFunc = {
+//   form: formObject;
+//   setForm: any;
+// };
 
 export default function RichText({ form, setForm }: formAndFunc) {
   const editor = useRef(null);
