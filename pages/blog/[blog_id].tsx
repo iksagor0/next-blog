@@ -29,7 +29,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [
       {
-        params: { blog_id: "641b1947d30c6be96e0dba16" },
+        params: { blog_id: "6421b2ba193779d394f2b2c2" },
       },
     ],
     fallback: true,
