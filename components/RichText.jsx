@@ -14,10 +14,10 @@ import { useRef } from "react";
 //   setForm: any;
 // };
 
-export default function RichText({ form, setForm }: formAndFunc) {
+export default function RichText({ form, setForm }) {
   const editor = useRef(null);
 
-  const handleRichText = (content: any) => {
+  const handleRichText = (content) => {
     setForm({ ...form, description: content });
   };
 
