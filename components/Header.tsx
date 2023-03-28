@@ -8,7 +8,7 @@ import { RxAvatar } from "react-icons/rx";
 import auth from "./Auth/auth";
 
 export default function Header() {
-  const [isLogin, setIsLogin] = useState();
+  const [isLogin, setIsLogin] = useState<boolean>();
   const [profileName, setProfileName] = useState<string>("");
   const [showCategory, setShowCategory] = useState<boolean>(false);
   const [showMenu, setShowMenu] = useState<boolean>(false);
@@ -17,7 +17,7 @@ export default function Header() {
   const hideSubMenu = () => setShowCategory(false);
 
   useEffect(() => {
-    setIsLogin(auth());
+    setIsLogin(auth() ?? false);
 
     const getName: string = localStorage.getItem("name") ?? "Profile";
     setProfileName(getName);
