@@ -8,6 +8,15 @@ import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
+interface blog {
+  _id: string;
+  title: string;
+  shortDes: string;
+  category: string;
+  approval: string;
+  priority: string;
+}
+
 export default function Home({ blogData }: any) {
   const [blogs, setBlogs] = useState(blogData ?? []);
 
@@ -25,7 +34,7 @@ export default function Home({ blogData }: any) {
           <section className="blog_table_container">
             <h1 className="text-5xl font-bold my-5">Blogs</h1>
 
-            {blogs.map((blog) => (
+            {blogs.map((blog: blog) => (
               <Link
                 href={`/blog/${blog._id}`}
                 className="blog mb-5 flex gap-5"

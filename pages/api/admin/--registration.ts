@@ -1,5 +1,5 @@
-import dbConnect from "@db/dbConnect";
-import Admin from "@model/adminModel";
+import dbConnect from "@/db/dbConnect";
+import Admin from "@/model/adminModel";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { NextApiRequest, NextApiResponse } from "next";

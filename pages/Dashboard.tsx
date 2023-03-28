@@ -5,6 +5,7 @@ import protectDashboard from "~/Auth/protectDashboard";
 interface blog {
   _id: string;
   title: string;
+  shortDes: string;
   category: string;
   approval: string;
   priority: string;
