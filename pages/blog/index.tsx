@@ -1,9 +1,8 @@
-import axios from "axios";
-import { GetServerSideProps } from "next";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
+import useSWR from "swr";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,8 +15,15 @@ interface blog {
   priority: string;
 }
 
-export default function Home({ blogData }: any) {
-  const [blogs, setBlogs] = useState(blogData ?? []);
+export default function Home() {
+  const [blogs, setBlogs] = useState([]);
+
+  const { data, error } = useSWR("/api/blog/get/everyone");
+
+  if (error) <p>Loading failed...</p>;
+  if (!data) <h1>Loading...</h1>;
+
+  console.log(data);
 
   return (
     <>
@@ -57,11 +63,11 @@ export default function Home({ blogData }: any) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { data } = await axios.get(
-    "http://localhost:3000/api/blog/get/everyone"
-  );
-  const blogData = data.body;
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const { data } = await axios.get(
+//     "http://localhost:3000/api/blog/get/everyone"
+//   );
+//   const blogData = data.body;
 
-  return { props: { blogData } };
-};
+//   return { props: { blogData } };
+// };
