@@ -5,8 +5,6 @@ import { useRouter } from "next/router";
 
 export default function Blog({ blog }: any) {
   const router = useRouter();
-  console.log(router.query?.blog_id);
-  console.log(blog);
 
   return (
     <section id="blog">
@@ -37,7 +35,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  console.log(context.params?.blog_id);
   const { data } = await axios.get(
     `http://localhost:3000/api/blog/get/one?_id=${context.params?.blog_id}`
   );
