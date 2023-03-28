@@ -50,7 +50,7 @@ export default function Login() {
       // } else {
       //   router.push("/");
       // }
-      router.push("/admin/dashboard");
+      router.push("/dashboard");
     } else {
       setErrMsg(data?.message);
     }
